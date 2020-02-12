@@ -11,7 +11,7 @@ function App() {
     <HouseState>
       <Router>
         <Navbar />
-        <div className='container py-4'>
+        <div className='p-4'>
           <Switch>
             <Route exact path='/' component={Home} />
           </Switch>

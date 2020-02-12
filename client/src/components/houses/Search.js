@@ -30,73 +30,71 @@ const Search = () => {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <div className='row'>
-          <div className='form-group col-md'>
-            <label htmlFor='selectWorld'>World</label>
-            <select
-              value={select.world}
-              className='form-control text-primary'
-              id='selectWorld'
-              name='world'
-              onChange={onChange}
-            >
-              <option value='choose world'>Choose World</option>
-              {worlds.map(world => {
-                return (
-                  <option key={world.toLowerCase()} value={world.toLowerCase()}>
-                    {world}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          <div className='form-group col-md'>
-            <label htmlFor='selectCity'>City</label>
-            <select
-              value={select.city}
-              className='form-control text-primary'
-              id='selectCity'
-              name='city'
-              onChange={onChange}
-            >
-              <option value='choose city'>Choose City</option>
-              <option value='all'>All</option>
-              {cities.map(city => {
-                return (
-                  <option key={city.toLowerCase()} value={city.toLowerCase()}>
-                    {city}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          <div className='form-group col-md'>
-            <label htmlFor='selectType'>Type</label>
-            <select
-              value={select.type}
-              className='form-control text-primary'
-              id='selectType'
-              name='type'
-              onChange={onChange}
-            >
-              <option value='house'>House</option>
-              <option value='guildhall'>Guildhall</option>
-            </select>
-          </div>
-          <div className='form-group col-md'>
-            <label htmlFor='selectStatus'>Status</label>
-            <select
-              value={select.status}
-              className='form-control text-primary'
-              id='selectStatus'
-              name='status'
-              onChange={onChange}
-            >
-              <option value='all'>All</option>
-              <option value='auctioned'>Auctioned</option>
-              <option value='rented'>Rented</option>
-            </select>
-          </div>
+        <div className='form-group'>
+          <label htmlFor='selectWorld'>World</label>
+          <select
+            value={select.world}
+            className='form-control text-primary'
+            id='selectWorld'
+            name='world'
+            onChange={onChange}
+          >
+            <option value='choose world'>Choose World</option>
+            {worlds.map(world => {
+              return (
+                <option key={world.toLowerCase()} value={world.toLowerCase()}>
+                  {world}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div className='form-group'>
+          <label htmlFor='selectCity'>City</label>
+          <select
+            value={select.city}
+            className='form-control text-primary'
+            id='selectCity'
+            name='city'
+            onChange={onChange}
+          >
+            <option value='choose city'>Choose City</option>
+            <option value='all'>All</option>
+            {cities.map(city => {
+              return (
+                <option key={city.toLowerCase()} value={city.toLowerCase()}>
+                  {city}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div className='form-group'>
+          <label htmlFor='selectType'>Type</label>
+          <select
+            value={select.type}
+            className='form-control text-primary'
+            id='selectType'
+            name='type'
+            onChange={onChange}
+          >
+            <option value='house'>House</option>
+            <option value='guildhall'>Guildhall</option>
+          </select>
+        </div>
+        <div className='form-group'>
+          <label htmlFor='selectStatus'>Status</label>
+          <select
+            value={select.status}
+            className='form-control text-primary'
+            id='selectStatus'
+            name='status'
+            onChange={onChange}
+          >
+            <option value='all'>All</option>
+            <option value='auctioned'>Auctioned</option>
+            <option value='rented'>Rented</option>
+          </select>
         </div>
         <div className='row'>
           <button

@@ -5,8 +5,14 @@ import Houses from '../houses/Houses';
 const Home = () => {
   return (
     <Fragment>
-      <Search />
-      <Houses />
+      <div className='row'>
+        <div className='col-xl-2 col-lg-4'>
+          <Search />
+        </div>
+        <div className='col-xl-10 col-lg-8'>
+          <Houses />
+        </div>
+      </div>
     </Fragment>
   );
 };
