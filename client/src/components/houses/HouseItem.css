@@ -2,6 +2,10 @@
   min-width: 150px;
 }
 
+.badge-w {
+  width: 150px;
+}
+
 .custom-m {
   margin-left: 1rem;
 }

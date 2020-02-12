@@ -3,18 +3,31 @@ import { Link } from 'react-router-dom';
 import './HouseItem.css';
 
 const HouseItem = ({ house }) => {
-  let border;
+  let color;
+  let badgeName;
 
   if (house.status === 'rented') {
-    border = 'border-danger';
+    color = 'danger';
+    badgeName = 'Rented';
+  } else if (house.status === 'auctioned (no bid yet)') {
+    color = 'success';
+    badgeName = 'No bid';
   } else {
-    border = 'border-success';
+    color = 'warning';
+    badgeName = house.status
+      .split(' ')
+      .slice(3, 6)
+      .join(' ')
+      .slice(0, -1);
   }
 
   return (
-    <div className={`card bg-light ${border} custom-col max-w`}>
+    <div className={`card bg-light border-${color} custom-col max-w`}>
       <div className='row align-items-center justify-content-center'>
         <div className='col-5 min-w text-center pr-0'>
+          <span className={`d-block mb-2 mx-auto badge-w badge badge-${color}`}>
+            {badgeName}
+          </span>
           <img
             src={`https://static.tibia.com/images/houses/house_${house.houseid}.png`}
             alt=''

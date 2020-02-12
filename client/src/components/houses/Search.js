@@ -13,7 +13,9 @@ const Search = () => {
   const onSubmit = e => {
     e.preventDefault();
 
-    searchHouses(select.world, select.type, select.status);
+    if (select.world !== 'choose world') {
+      searchHouses(select.world, select.type, select.status);
+    }
   };
 
   const onChange = e => {
