@@ -1,0 +1,15 @@
+.max-w {
+  max-width: 47%;
+}
+
+@media (max-width: 1200px) {
+  .max-w {
+    max-width: 46%;
+  }
+}
+
+@media (max-width: 990px) {
+  .max-w {
+    max-width: 100%;
+  }
+}
