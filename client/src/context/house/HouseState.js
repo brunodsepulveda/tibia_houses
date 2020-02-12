@@ -2,11 +2,12 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import HouseContext from './houseContext';
 import HouseReducer from './houseReducer';
-import { SEARCH_HOUSES, SET_LOADING } from '../types';
+import { SEARCH_HOUSES, FILTER_CONTACTS_NAME, SET_LOADING } from '../types';
 
 const HouseState = props => {
   const initialState = {
     houses: [],
+    filteredHouses: null,
     currentWorld: null,
     cities: [
       "Ab'Dendriel",
@@ -52,6 +53,13 @@ const HouseState = props => {
     });
   };
 
+  const filterHousesByName = name => {
+    dispatch({
+      type: FILTER_CONTACTS_NAME,
+      payload: name
+    });
+  };
+
   const setLoading = () => {
     dispatch({
       type: SET_LOADING
@@ -62,11 +70,13 @@ const HouseState = props => {
     <HouseContext.Provider
       value={{
         houses: state.houses,
+        filteredHouses: state.filteredHouses,
         currentWorld: state.currentWorld,
         loading: state.loading,
         cities: state.cities,
         worlds: state.worlds,
-        searchHouses
+        searchHouses,
+        filterHousesByName
       }}
     >
       {props.children}
