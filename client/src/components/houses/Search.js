@@ -3,24 +3,17 @@ import HouseContext from '../../context/house/houseContext';
 
 const Search = () => {
   const [select, setSelect] = useState({
-    world: 'choose world',
-    city: 'choose city',
-    type: 'house',
-    status: 'all'
+    world: 'choose world'
   });
-
-  let worlds = ['Belobra', 'Descubra', 'Kalibra'];
-
-  let cities = ['Darashia', 'Edron', 'Yalahar'];
 
   const houseContext = useContext(HouseContext);
 
-  const { searchHouses } = houseContext;
+  const { searchHouses, worlds } = houseContext;
 
   const onSubmit = e => {
     e.preventDefault();
 
-    searchHouses(select.world, select.city, select.type, select.status);
+    searchHouses(select.world, select.type, select.status);
   };
 
   const onChange = e => {
@@ -49,53 +42,7 @@ const Search = () => {
             })}
           </select>
         </div>
-        <div className='form-group'>
-          <label htmlFor='selectCity'>City</label>
-          <select
-            value={select.city}
-            className='form-control text-primary'
-            id='selectCity'
-            name='city'
-            onChange={onChange}
-          >
-            <option value='choose city'>Choose City</option>
-            <option value='all'>All</option>
-            {cities.map(city => {
-              return (
-                <option key={city.toLowerCase()} value={city.toLowerCase()}>
-                  {city}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        <div className='form-group'>
-          <label htmlFor='selectType'>Type</label>
-          <select
-            value={select.type}
-            className='form-control text-primary'
-            id='selectType'
-            name='type'
-            onChange={onChange}
-          >
-            <option value='house'>House</option>
-            <option value='guildhall'>Guildhall</option>
-          </select>
-        </div>
-        <div className='form-group'>
-          <label htmlFor='selectStatus'>Status</label>
-          <select
-            value={select.status}
-            className='form-control text-primary'
-            id='selectStatus'
-            name='status'
-            onChange={onChange}
-          >
-            <option value='all'>All</option>
-            <option value='auctioned'>Auctioned</option>
-            <option value='rented'>Rented</option>
-          </select>
-        </div>
+
         <div className='row'>
           <button
             type='submit'

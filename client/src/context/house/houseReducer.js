@@ -5,7 +5,8 @@ export default (state, action) => {
     case SEARCH_HOUSES:
       return {
         ...state,
-        houses: action.payload,
+        houses: action.payload.resHouses,
+        currentWorld: action.payload.world,
         loading: false
       };
     case SET_LOADING:
