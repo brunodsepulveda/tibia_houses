@@ -7,7 +7,14 @@ import NavTab from '../layout/NavTab';
 const Houses = () => {
   const houseContext = useContext(HouseContext);
 
-  const { loading, houses, cities, world, filtered, filter } = houseContext;
+  const {
+    loading,
+    houses,
+    cities,
+    currentWorld,
+    filtered,
+    filter
+  } = houseContext;
 
   if (loading) {
     return <Spinner />;
@@ -15,8 +22,8 @@ const Houses = () => {
     if (houses.length > 0) {
       return (
         <div>
-          <NavTab id={world} items={cities} />
-          <div className='tab-content' id={world + 'Content'}>
+          <NavTab id={currentWorld} items={cities} />
+          <div className='tab-content' id={currentWorld + 'Content'}>
             {houses.map((housePerCity, index) => {
               return (
                 <div
@@ -47,6 +54,7 @@ const Houses = () => {
                           <HouseItem
                             key={houseItem.houseid}
                             house={houseItem}
+                            world={currentWorld}
                           />
                         ) : (
                           <h4 key={index} className='mx-auto mt-5'>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './HouseItem.css';
 
-const HouseItem = ({ house }) => {
+const HouseItem = ({ house, world }) => {
   let color;
   let badgeName;
 
@@ -46,7 +46,7 @@ const HouseItem = ({ house }) => {
             </ul>
           </div>
           <div className='card-body pt-0 pl-0'>
-            <Link to='/' className='btn btn-primary'>
+            <Link to={`/${world}/${house.houseid}`} className='btn btn-primary'>
               More Info
             </Link>
           </div>

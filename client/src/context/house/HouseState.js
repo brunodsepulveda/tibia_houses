@@ -4,6 +4,7 @@ import HouseContext from './houseContext';
 import HouseReducer from './houseReducer';
 import {
   SEARCH_HOUSES,
+  GET_HOUSE,
   SET_FILTER_NAME,
   SET_FILTERS,
   FILTER_HOUSES_NAME,
@@ -18,6 +19,7 @@ const HouseState = props => {
     houses: [],
     guildhalls: [],
     filtered: [],
+    house: {},
     filter: {
       name: '',
       minSize: '',
@@ -59,7 +61,7 @@ const HouseState = props => {
     let resHouses = [];
     let resGuildhalls = [];
 
-    for (const city of initialState.cities) {
+    for (const city of state.cities) {
       res = await axios.get(
         `https://api.tibiadata.com/v2/houses/${world}/${city}.json`
       );
@@ -67,7 +69,7 @@ const HouseState = props => {
       resHouses.push(res.data.houses);
     }
 
-    for (const city of initialState.cities) {
+    for (const city of state.cities) {
       res = await axios.get(
         `https://api.tibiadata.com/v2/houses/${world}/${city}/guildhalls.json`
       );
@@ -84,6 +86,19 @@ const HouseState = props => {
     dispatch({
       type: SEARCH_HOUSES,
       payload: { resHouses, resGuildhalls, world }
+    });
+  };
+
+  const getHouse = async (id, world) => {
+    setLoading();
+
+    let res = await axios.get(
+      `https://api.tibiadata.com/v2/house/${world}/${id}.json`
+    );
+
+    dispatch({
+      type: GET_HOUSE,
+      payload: res.data.house
     });
   };
 
@@ -141,6 +156,7 @@ const HouseState = props => {
     <HouseContext.Provider
       value={{
         houses: state.houses,
+        house: state.house,
         guildhalls: state.guildhalls,
         filtered: state.filtered,
         filter: state.filter,
@@ -150,6 +166,7 @@ const HouseState = props => {
         cities: state.cities,
         worlds: state.worlds,
         searchHouses,
+        getHouse,
         setFilterName,
         setFilters,
         filterHousesByName,

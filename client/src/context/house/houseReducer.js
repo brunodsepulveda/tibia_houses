@@ -1,5 +1,6 @@
 import {
   SEARCH_HOUSES,
+  GET_HOUSE,
   SET_FILTER_NAME,
   SET_FILTERS,
   FILTER_HOUSES_NAME,
@@ -35,6 +36,12 @@ export default (state, action) => {
           ...state.filter,
           name: action.payload
         }
+      };
+    case GET_HOUSE:
+      return {
+        ...state,
+        house: action.payload,
+        loading: false
       };
     case SET_FILTERS:
       return {

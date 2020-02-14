@@ -1,4 +1,5 @@
 export const SEARCH_HOUSES = 'SEARCH_HOUSES';
+export const GET_HOUSE = 'GET_HOUSE';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_FILTER_NAME = 'SET_FILTER_NAME';
 export const SET_FILTERS = 'SET_FILTERS';
