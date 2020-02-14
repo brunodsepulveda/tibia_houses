@@ -2,6 +2,7 @@ import React, { Fragment, useContext } from 'react';
 import Search from '../houses/Search';
 import HouseFilterByName from '../houses/HouseFilterByName';
 import HouseFilterByAttribute from '../houses/HouseFilterByAttribute';
+import Order from '../houses/Order';
 import Houses from '../houses/Houses';
 import HouseContext from '../../context/house/houseContext';
 
@@ -21,6 +22,8 @@ const Home = () => {
               <HouseFilterByName />
               <hr />
               <HouseFilterByAttribute />
+              <hr />
+              <Order />
             </Fragment>
           )}
         </div>
