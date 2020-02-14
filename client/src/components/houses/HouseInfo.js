@@ -99,7 +99,7 @@ const HouseInfo = ({ match }) => {
                   return (
                     image.slice(14, 19) === match.params.id && (
                       <img
-                        className='d-inline-block'
+                        className='d-inline-block image-info'
                         key={image.slice(14, 21)}
                         src={image}
                         alt=''

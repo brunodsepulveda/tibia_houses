@@ -1,11 +1,11 @@
-img {
+.image-info {
   max-height: 350px;
   width: auto;
   margin: 0.5rem;
 }
 
 @media (max-width: 450px) {
-  img {
+  .image-info {
     max-width: 250px;
     height: auto;
     margin: 0.5rem 0rem;
@@ -13,25 +13,25 @@ img {
 }
 
 @media (max-width: 410px) {
-  img {
+  .image-info {
     max-width: 230px;
   }
 }
 
 @media (max-width: 390px) {
-  img {
+  .image-info {
     max-width: 210px;
   }
 }
 
 @media (max-width: 350px) {
-  img {
+  .image-info {
     max-width: 190px;
   }
 }
 
 @media (max-width: 330px) {
-  img {
+  .image-info {
     max-width: 170px;
   }
 }
