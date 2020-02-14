@@ -45,11 +45,8 @@ const Search = () => {
           </select>
         </div>
 
-        <div className='row'>
-          <button
-            type='submit'
-            className='btn btn-primary btn-lg btn-block mx-3'
-          >
+        <div className='form-group'>
+          <button type='submit' className='btn btn-primary btn-lg btn-block'>
             Search
           </button>
         </div>

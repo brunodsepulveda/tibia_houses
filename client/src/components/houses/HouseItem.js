@@ -24,7 +24,7 @@ const HouseItem = ({ house }) => {
   return (
     <div className={`card bg-light border-${color} custom-col max-w`}>
       <div className='row align-items-center justify-content-center'>
-        <div className='col-5 min-w text-center pr-0'>
+        <div className='col-5 min-w text-center pt-xsm-2'>
           <span className={`d-block mb-2 mx-auto badge-w badge badge-${color}`}>
             {badgeName}
           </span>

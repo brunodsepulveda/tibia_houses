@@ -24,6 +24,28 @@
   }
 }
 
+@media (max-width: 373px) {
+  .pt-xsm-2 {
+    padding-top: 0.5rem !important;
+  }
+}
+
+@media (max-width: 460px) {
+  .card-title {
+    font-size: 1rem !important;
+  }
+
+  .card-body,
+  .btn {
+    font-size: 0.8rem;
+  }
+
+  .badge-w,
+  img {
+    width: 120px;
+  }
+}
+
 @media (min-width: 1200px) {
   .custom-col {
     -webkit-box-flex: 0;
@@ -38,7 +60,7 @@
   }
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1700px) {
   .custom-col {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 32.3333333333%;
@@ -52,7 +74,7 @@
   }
 }
 
-@media (min-width: 2000px) {
+@media (min-width: 2250px) {
   .custom-col {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 24.5%;
