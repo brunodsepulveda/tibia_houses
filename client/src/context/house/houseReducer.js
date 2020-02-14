@@ -4,6 +4,7 @@ import {
   SET_FILTERS,
   FILTER_HOUSES_NAME,
   FILTER_HOUSES_ATTRIBUTES,
+  SET_ORDER,
   ORDER_HOUSES,
   SET_LOADING
 } from '../types';
@@ -85,6 +86,30 @@ export default (state, action) => {
         });
       }
 
+      filtered = filtered.map(housePerCity => {
+        return housePerCity.sort((houseA, houseB) => {
+          if (state.order === 'name') {
+            return houseA.name > houseB.name
+              ? 1
+              : houseB.name > houseA.name
+              ? -1
+              : 0;
+          } else if (state.order === 'size') {
+            return houseA.size > houseB.size
+              ? 1
+              : houseB.size > houseA.size
+              ? -1
+              : 0;
+          } else {
+            return houseA.status > houseB.status
+              ? 1
+              : houseB.status > houseA.status
+              ? -1
+              : 0;
+          }
+        });
+      });
+
       return {
         ...state,
         filtered
@@ -131,9 +156,38 @@ export default (state, action) => {
         });
       }
 
+      filtered = filtered.map(housePerCity => {
+        return housePerCity.sort((houseA, houseB) => {
+          if (state.order === 'name') {
+            return houseA.name > houseB.name
+              ? 1
+              : houseB.name > houseA.name
+              ? -1
+              : 0;
+          } else if (state.order === 'size') {
+            return houseA.size > houseB.size
+              ? 1
+              : houseB.size > houseA.size
+              ? -1
+              : 0;
+          } else {
+            return houseA.status > houseB.status
+              ? 1
+              : houseB.status > houseA.status
+              ? -1
+              : 0;
+          }
+        });
+      });
+
       return {
         ...state,
         filtered
+      };
+    case SET_ORDER:
+      return {
+        ...state,
+        order: action.payload
       };
     case ORDER_HOUSES:
       filtered = state.filtered.map(housePerCity => {

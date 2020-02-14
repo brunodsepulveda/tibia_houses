@@ -6,12 +6,14 @@ const Order = () => {
 
   const houseContext = useContext(HouseContext);
 
-  const { changeOrder } = houseContext;
+  const { setHousesOrder, changeHousesOrder } = houseContext;
 
   const onChangeOrder = e => {
     setOrder(e.target.value);
 
-    changeOrder(e.target.value);
+    setHousesOrder(e.target.value);
+
+    changeHousesOrder(e.target.value);
   };
 
   return (
