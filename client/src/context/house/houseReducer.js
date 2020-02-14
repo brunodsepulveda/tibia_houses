@@ -4,6 +4,7 @@ import {
   SET_FILTERS,
   FILTER_HOUSES_NAME,
   FILTER_HOUSES_ATTRIBUTES,
+  ORDER_HOUSES,
   SET_LOADING
 } from '../types';
 
@@ -129,6 +130,35 @@ export default (state, action) => {
           });
         });
       }
+
+      return {
+        ...state,
+        filtered
+      };
+    case ORDER_HOUSES:
+      filtered = state.filtered.map(housePerCity => {
+        return housePerCity.sort((houseA, houseB) => {
+          if (action.payload === 'name') {
+            return houseA.name > houseB.name
+              ? 1
+              : houseB.name > houseA.name
+              ? -1
+              : 0;
+          } else if (action.payload === 'size') {
+            return houseA.size > houseB.size
+              ? 1
+              : houseB.size > houseA.size
+              ? -1
+              : 0;
+          } else {
+            return houseA.status > houseB.status
+              ? 1
+              : houseB.status > houseA.status
+              ? -1
+              : 0;
+          }
+        });
+      });
 
       return {
         ...state,

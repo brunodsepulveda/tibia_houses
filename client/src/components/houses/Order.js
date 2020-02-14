@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import HouseContext from '../../context/house/houseContext';
 
 const Order = () => {
   const [order, setOrder] = useState('name');
 
+  const houseContext = useContext(HouseContext);
+
+  const { changeOrder } = houseContext;
+
   const onChangeOrder = e => {
     setOrder(e.target.value);
+
+    changeOrder(e.target.value);
   };
 
   return (
@@ -23,7 +30,6 @@ const Order = () => {
               className='custom-control-input'
               checked={order === 'name'}
               onChange={onChangeOrder}
-              disabled
             />
             <label htmlFor='orderName' className='custom-control-label'>
               Name
@@ -40,7 +46,6 @@ const Order = () => {
               className='custom-control-input'
               checked={order === 'size'}
               onChange={onChangeOrder}
-              disabled
             />
             <label htmlFor='orderSize' className='custom-control-label'>
               Size
@@ -57,7 +62,6 @@ const Order = () => {
               className='custom-control-input'
               checked={order === 'status'}
               onChange={onChangeOrder}
-              disabled
             />
             <label htmlFor='orderStatus' className='custom-control-label'>
               Status

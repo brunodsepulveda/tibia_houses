@@ -8,6 +8,7 @@ import {
   SET_FILTERS,
   FILTER_HOUSES_NAME,
   FILTER_HOUSES_ATTRIBUTES,
+  ORDER_HOUSES,
   SET_LOADING
 } from '../types';
 
@@ -103,10 +104,16 @@ const HouseState = props => {
   };
 
   const filterHousesByAttributes = (minSize, maxRent, status, type) => {
-    console.log('filtering');
     dispatch({
       type: FILTER_HOUSES_ATTRIBUTES,
       payload: { minSize, maxRent, status, type }
+    });
+  };
+
+  const changeOrder = order => {
+    dispatch({
+      type: ORDER_HOUSES,
+      payload: order
     });
   };
 
@@ -132,7 +139,8 @@ const HouseState = props => {
         setFilterName,
         setFilters,
         filterHousesByName,
-        filterHousesByAttributes
+        filterHousesByAttributes,
+        changeOrder
       }}
     >
       {props.children}
