@@ -23,6 +23,7 @@ const Order = () => {
               className='custom-control-input'
               checked={order === 'name'}
               onChange={onChangeOrder}
+              disabled
             />
             <label htmlFor='orderName' className='custom-control-label'>
               Name
@@ -39,33 +40,29 @@ const Order = () => {
               className='custom-control-input'
               checked={order === 'size'}
               onChange={onChangeOrder}
+              disabled
             />
             <label htmlFor='orderSize' className='custom-control-label'>
               Size
             </label>
           </div>
 
-          {/* Rent Radio */}
+          {/* Status Radio */}
           <div className='custom-control custom-radio'>
             <input
               type='radio'
-              name='rent'
-              id='orderRent'
-              value='rent'
+              name='status'
+              id='orderStatus'
+              value='status'
               className='custom-control-input'
-              checked={order === 'rent'}
+              checked={order === 'status'}
               onChange={onChangeOrder}
+              disabled
             />
-            <label htmlFor='orderRent' className='custom-control-label'>
-              Rent
+            <label htmlFor='orderStatus' className='custom-control-label'>
+              Status
             </label>
           </div>
-        </div>
-
-        <div className='form-group'>
-          <button type='submit' className='btn btn-primary btn-lg btn-block'>
-            Order
-          </button>
         </div>
       </form>
     </div>

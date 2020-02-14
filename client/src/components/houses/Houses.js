@@ -7,7 +7,7 @@ import NavTab from '../layout/NavTab';
 const Houses = () => {
   const houseContext = useContext(HouseContext);
 
-  const { loading, houses, cities, world, filteredHouses } = houseContext;
+  const { loading, houses, cities, world, filtered, filter } = houseContext;
 
   if (loading) {
     return <Spinner />;
@@ -41,30 +41,23 @@ const Houses = () => {
                   }
                 >
                   <div className='row'>
-                    {filteredHouses !== null ? (
-                      filteredHouses[index].length ? (
-                        filteredHouses[index].map(houseItem => {
-                          return (
-                            <HouseItem
-                              key={houseItem.houseid}
-                              house={houseItem}
-                            />
-                          );
-                        })
-                      ) : (
-                        <h4 className='mx-auto mt-5'>
-                          Not found any house using this filter
-                        </h4>
-                      )
-                    ) : (
-                      housePerCity.houses.map(houseItem => {
-                        return (
+                    {filtered[index].length ? (
+                      filtered[index].map(houseItem => {
+                        return houseItem.houseid !== 0 ? (
                           <HouseItem
                             key={houseItem.houseid}
                             house={houseItem}
                           />
+                        ) : (
+                          <h4 key={index} className='mx-auto mt-5'>
+                            Not found any {filter.type.slice(0, -1)}
+                          </h4>
                         );
                       })
+                    ) : (
+                      <h4 className='mx-auto mt-5'>
+                        Not found any {filter.type.slice(0, -1)}
+                      </h4>
                     )}
                   </div>
                 </div>

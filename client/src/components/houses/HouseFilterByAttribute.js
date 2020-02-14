@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import HouseContext from '../../context/house/houseContext';
 
 const HouseFilterByAttribute = () => {
   const [filter, setFilter] = useState({
@@ -8,11 +9,24 @@ const HouseFilterByAttribute = () => {
     type: 'houses'
   });
 
+  const houseContext = useContext(HouseContext);
+
+  const { setFilters, filterHousesByAttributes } = houseContext;
+
   const onChangeStatus = e => {
     setFilter({
       ...filter,
       status: e.target.value
     });
+
+    setFilters('status', e.target.value);
+
+    filterHousesByAttributes(
+      filter.minSize,
+      filter.maxRent,
+      e.target.value,
+      filter.type
+    );
   };
 
   const onChangeType = e => {
@@ -20,6 +34,40 @@ const HouseFilterByAttribute = () => {
       ...filter,
       type: e.target.value
     });
+
+    setFilters('type', e.target.value);
+
+    filterHousesByAttributes(
+      filter.minSize,
+      filter.maxRent,
+      filter.status,
+      e.target.value
+    );
+  };
+
+  const onChange = e => {
+    setFilter({
+      ...filter,
+      [e.target.name]: e.target.value
+    });
+
+    setFilters(e.target.name, e.target.value);
+
+    if (e.target.name === 'minSize') {
+      filterHousesByAttributes(
+        e.target.value,
+        filter.maxRent,
+        filter.status,
+        filter.type
+      );
+    } else if (e.target.name === 'maxRent') {
+      filterHousesByAttributes(
+        filter.minSize,
+        e.target.value,
+        filter.status,
+        filter.type
+      );
+    }
   };
 
   return (
@@ -36,10 +84,13 @@ const HouseFilterByAttribute = () => {
               <span className='input-group-text'>Min Size</span>
             </div>
             <input
-              type='text'
+              className='form-control'
+              autoComplete='off'
+              type='number'
               id='minSize'
               name='minSize'
-              className='form-control'
+              value={filter.minSize}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -51,10 +102,12 @@ const HouseFilterByAttribute = () => {
               <span className='input-group-text'>Max Rent</span>
             </div>
             <input
-              type='text'
+              className='form-control'
+              type='number'
               id='maxRent'
               name='maxRent'
-              className='form-control'
+              value={filter.maxRent}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -145,12 +198,6 @@ const HouseFilterByAttribute = () => {
               Guildhalls
             </label>
           </div>
-        </div>
-
-        <div className='form-group'>
-          <button type='submit' className='btn btn-primary btn-lg btn-block'>
-            Filter
-          </button>
         </div>
       </form>
     </div>

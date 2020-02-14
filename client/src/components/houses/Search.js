@@ -2,9 +2,7 @@ import React, { useState, useContext } from 'react';
 import HouseContext from '../../context/house/houseContext';
 
 const Search = () => {
-  const [select, setSelect] = useState({
-    world: 'choose world'
-  });
+  const [world, setWorld] = useState('choose world');
 
   const houseContext = useContext(HouseContext);
 
@@ -13,13 +11,13 @@ const Search = () => {
   const onSubmit = e => {
     e.preventDefault();
 
-    if (select.world !== 'choose world') {
-      searchHouses(select.world, select.type, select.status);
+    if (world !== 'choose world') {
+      searchHouses(world);
     }
   };
 
   const onChange = e => {
-    setSelect({ ...select, [e.target.name]: e.target.value });
+    setWorld(e.target.value);
   };
 
   return (
@@ -28,7 +26,7 @@ const Search = () => {
         <div className='form-group'>
           <label htmlFor='selectWorld'>World</label>
           <select
-            value={select.world}
+            value={world}
             className='form-control text-primary'
             id='selectWorld'
             name='world'

@@ -1,23 +1,138 @@
-import { SEARCH_HOUSES, FILTER_CONTACTS_NAME, SET_LOADING } from '../types';
+import {
+  SEARCH_HOUSES,
+  SET_FILTER_NAME,
+  SET_FILTERS,
+  FILTER_HOUSES_NAME,
+  FILTER_HOUSES_ATTRIBUTES,
+  SET_LOADING
+} from '../types';
 
 export default (state, action) => {
+  let building;
+  let filtered;
+
   switch (action.type) {
     case SEARCH_HOUSES:
       return {
         ...state,
         houses: action.payload.resHouses,
+        guildhalls: action.payload.resGuildhalls,
+        filtered: action.payload.resHouses.map(housePerCity => {
+          return housePerCity.houses.filter(house => {
+            const regex = new RegExp('', 'gi');
+            return house.name.match(regex);
+          });
+        }),
         currentWorld: action.payload.world,
         loading: false
       };
-    case FILTER_CONTACTS_NAME:
+    case SET_FILTER_NAME:
       return {
         ...state,
-        filteredHouses: state.houses.map(housePerCity => {
-          return housePerCity.houses.filter(house => {
-            const regex = new RegExp(`${action.payload}`, 'gi');
-            return house.name.match(regex);
+        filter: {
+          ...state.filter,
+          name: action.payload
+        }
+      };
+    case SET_FILTERS:
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          [action.payload.filter]: action.payload.change
+        }
+      };
+    case FILTER_HOUSES_NAME:
+      state.filter.type === 'houses'
+        ? (building = state.houses)
+        : (building = state.guildhalls);
+
+      filtered = building.map(housePerCity => {
+        return housePerCity.houses.filter(house => {
+          const regex = new RegExp(`${action.payload}`, 'gi');
+          return house.name.match(regex);
+        });
+      });
+
+      if (state.filter.minSize !== '') {
+        filtered = filtered.map(housePerCity => {
+          return housePerCity.filter(house => {
+            return house.size >= parseInt(state.filter.minSize);
           });
-        })
+        });
+      }
+
+      if (state.filter.maxRent !== '') {
+        filtered = filtered.map(housePerCity => {
+          return housePerCity.filter(house => {
+            return house.rent <= parseInt(state.filter.maxRent);
+          });
+        });
+      }
+
+      if (state.filter.status === 'rented') {
+        filtered = filtered.map(housePerCity => {
+          return housePerCity.filter(house => {
+            return house.status === 'rented';
+          });
+        });
+      } else if (state.filter.status === 'auctioned') {
+        filtered = filtered.map(housePerCity => {
+          return housePerCity.filter(house => {
+            return house.status !== 'rented';
+          });
+        });
+      }
+
+      return {
+        ...state,
+        filtered
+      };
+    case FILTER_HOUSES_ATTRIBUTES:
+      state.filter.type === 'houses'
+        ? (building = state.houses)
+        : (building = state.guildhalls);
+
+      filtered = building.map(housePerCity => {
+        return housePerCity.houses.filter(house => {
+          const regex = new RegExp(`${state.filter.name}`, 'gi');
+          return house.name.match(regex);
+        });
+      });
+
+      if (action.payload.minSize !== '') {
+        filtered = filtered.map(housePerCity => {
+          return housePerCity.filter(house => {
+            return house.size >= parseInt(action.payload.minSize);
+          });
+        });
+      }
+
+      if (action.payload.maxRent !== '') {
+        filtered = filtered.map(housePerCity => {
+          return housePerCity.filter(house => {
+            return house.rent <= parseInt(action.payload.maxRent);
+          });
+        });
+      }
+
+      if (action.payload.status === 'rented') {
+        filtered = filtered.map(housePerCity => {
+          return housePerCity.filter(house => {
+            return house.status === 'rented';
+          });
+        });
+      } else if (action.payload.status === 'auctioned') {
+        filtered = filtered.map(housePerCity => {
+          return housePerCity.filter(house => {
+            return house.status !== 'rented';
+          });
+        });
+      }
+
+      return {
+        ...state,
+        filtered
       };
     case SET_LOADING:
       return {

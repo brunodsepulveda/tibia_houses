@@ -6,10 +6,12 @@ const HouseFilterByName = () => {
 
   const houseContext = useContext(HouseContext);
 
-  const { filterHousesByName } = houseContext;
+  const { setFilterName, filterHousesByName } = houseContext;
 
   const onChange = e => {
     setText(e.target.value);
+
+    setFilterName(e.target.value);
 
     filterHousesByName(e.target.value);
   };
