@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import HouseContext from '../../context/house/houseContext';
 
 const HouseFilterByName = () => {
@@ -6,7 +6,11 @@ const HouseFilterByName = () => {
 
   const houseContext = useContext(HouseContext);
 
-  const { setFilterName, filterHousesByName } = houseContext;
+  const { houses, setFilterName, filterHousesByName } = houseContext;
+
+  useEffect(() => {
+    setText('');
+  }, [houses]);
 
   const onChange = e => {
     setText(e.target.value);

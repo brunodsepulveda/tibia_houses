@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import HouseContext from '../../context/house/houseContext';
 
 const Order = () => {
@@ -6,7 +6,11 @@ const Order = () => {
 
   const houseContext = useContext(HouseContext);
 
-  const { setHousesOrder, changeHousesOrder } = houseContext;
+  const { houses, setHousesOrder, changeHousesOrder } = houseContext;
+
+  useEffect(() => {
+    setOrder('name');
+  }, [houses]);
 
   const onChangeOrder = e => {
     setOrder(e.target.value);
@@ -51,6 +55,22 @@ const Order = () => {
             />
             <label htmlFor='orderSize' className='custom-control-label'>
               Size
+            </label>
+          </div>
+
+          {/* Rent Radio */}
+          <div className='custom-control custom-radio'>
+            <input
+              type='radio'
+              name='rent'
+              id='orderRent'
+              value='rent'
+              className='custom-control-input'
+              checked={order === 'rent'}
+              onChange={onChangeOrder}
+            />
+            <label htmlFor='orderRent' className='custom-control-label'>
+              Rent
             </label>
           </div>
 

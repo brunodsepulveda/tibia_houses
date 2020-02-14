@@ -75,6 +75,12 @@ const HouseState = props => {
       resGuildhalls.push(res.data.houses);
     }
 
+    setFilterName('');
+    setFilters('minSize', '');
+    setFilters('maxRent', '');
+    setFilters('status', 'all');
+    setFilters('type', 'houses');
+
     dispatch({
       type: SEARCH_HOUSES,
       payload: { resHouses, resGuildhalls, world }

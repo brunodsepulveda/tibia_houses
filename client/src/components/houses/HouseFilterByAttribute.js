@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import HouseContext from '../../context/house/houseContext';
 
 const HouseFilterByAttribute = () => {
@@ -11,7 +11,16 @@ const HouseFilterByAttribute = () => {
 
   const houseContext = useContext(HouseContext);
 
-  const { setFilters, filterHousesByAttributes } = houseContext;
+  const { houses, setFilters, filterHousesByAttributes } = houseContext;
+
+  useEffect(() => {
+    setFilter({
+      minSize: '',
+      maxRent: '',
+      status: 'all',
+      type: 'houses'
+    });
+  }, [houses]);
 
   const onChangeStatus = e => {
     setFilter({

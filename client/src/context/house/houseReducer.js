@@ -100,6 +100,12 @@ export default (state, action) => {
               : houseB.size > houseA.size
               ? -1
               : 0;
+          } else if (state.order === 'rent') {
+            return houseA.rent > houseB.rent
+              ? 1
+              : houseB.rent > houseA.rent
+              ? -1
+              : 0;
           } else {
             return houseA.status > houseB.status
               ? 1
@@ -170,6 +176,12 @@ export default (state, action) => {
               : houseB.size > houseA.size
               ? -1
               : 0;
+          } else if (state.order === 'rent') {
+            return houseA.rent > houseB.rent
+              ? 1
+              : houseB.rent > houseA.rent
+              ? -1
+              : 0;
           } else {
             return houseA.status > houseB.status
               ? 1
@@ -202,6 +214,12 @@ export default (state, action) => {
             return houseA.size > houseB.size
               ? 1
               : houseB.size > houseA.size
+              ? -1
+              : 0;
+          } else if (action.payload === 'rent') {
+            return houseA.rent > houseB.rent
+              ? 1
+              : houseB.rent > houseA.rent
               ? -1
               : 0;
           } else {
